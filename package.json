@@ -1,0 +1,144 @@
+{
+  "name": "coc-lit-html",
+  "version": "0.1.2",
+  "description": "lit-html extension for coc.nvim",
+  "author": "Heyward Fann <fannheyward@gmail.com>",
+  "license": "MIT",
+  "main": "lib/index.js",
+  "keywords": [
+    "coc.nvim"
+  ],
+  "engines": {
+    "coc": "^0.0.73"
+  },
+  "scripts": {
+    "clean": "rimraf lib",
+    "watch": "webpack --watch",
+    "build": "webpack",
+    "prepare": "npx npm-run-all clean build"
+  },
+  "activationEvents": [
+    "onLanguage:javascript",
+    "onLanguage:javascriptreact",
+    "onLanguage:typescript",
+    "onLanguage:typescriptreact"
+  ],
+  "contributes": {
+    "configuration": {
+      "id": "lit-html",
+      "type": "object",
+      "title": "coc-lit-html configuration",
+      "properties": {
+        "lit-html.tags": {
+          "type": "array",
+          "description": "List of template tags to enable HTML intellisense in.",
+          "items": {
+            "type": "string",
+            "description": "Tag name."
+          },
+          "default": [
+            "html",
+            "raw"
+          ]
+        },
+        "lit-html.format.enabled": {
+          "type": "boolean",
+          "description": "Enable/disable formatting of HTML template strings.",
+          "default": true
+        }
+      }
+    },
+    "jsonValidation": [
+      {
+        "fileMatch": "jsconfig*.json",
+        "url": "./schemas/tsconfig.schema.json"
+      },
+      {
+        "fileMatch": "tsconfig*.json",
+        "url": "./schemas/tsconfig.schema.json"
+      }
+    ],
+    "typescriptServerPlugins": [
+      {
+        "name": "typescript-lit-html-plugin",
+        "enableForWorkspaceTypeScriptVersions": true
+      }
+    ],
+    "grammars": [
+      {
+        "injectTo": [
+          "source.js",
+          "source.js.jsx",
+          "source.jsx",
+          "source.ts",
+          "source.tsx",
+          "text.html.basic"
+        ],
+        "scopeName": "inline.lit-html",
+        "path": "./syntaxes/lit-html.json",
+        "embeddedLanguages": {
+          "meta.embedded.block.html": "html",
+          "meta.embedded.block.css": "css",
+          "source.css": "css"
+        }
+      },
+      {
+        "injectTo": [
+          "source.js",
+          "source.js.jsx",
+          "source.jsx",
+          "source.ts",
+          "source.tsx",
+          "text.html.basic"
+        ],
+        "scopeName": "inline.lit-html.string.injection",
+        "path": "./syntaxes/lit-html-string-injection.json",
+        "embeddedLanguages": {
+          "meta.template.expression.ts": "typescript"
+        }
+      },
+      {
+        "injectTo": [
+          "source.js",
+          "source.js.jsx",
+          "source.jsx",
+          "source.ts",
+          "source.tsx",
+          "text.html.basic"
+        ],
+        "scopeName": "inline.lit-html.style.injection",
+        "path": "./syntaxes/lit-html-style-injection.json",
+        "embeddedLanguages": {
+          "meta.template.expression.ts": "typescript"
+        }
+      },
+      {
+        "injectTo": [
+          "source.js",
+          "source.js.jsx",
+          "source.jsx",
+          "source.ts",
+          "source.tsx",
+          "text.html.basic"
+        ],
+        "scopeName": "inline.lit-html-svg",
+        "path": "./syntaxes/lit-html-svg.json",
+        "embeddedLanguages": {
+          "meta.embedded.block.svg": "xml"
+        }
+      }
+    ]
+  },
+  "dependencies": {
+    "typescript-lit-html-plugin": "^0.9.0"
+  },
+  "devDependencies": {
+    "@types/node": "^12.0.4",
+    "coc.nvim": "^0.0.73",
+    "rimraf": "^2.6.3",
+    "ts-loader": "^6.0.4",
+    "typescript": "^3.5.2",
+    "webpack": "^4.35.0",
+    "webpack-cli": "^3.3.5"
+  }
+}
