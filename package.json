@@ -73,7 +73,7 @@
     "typescript-lit-html-plugin": "^0.9.0"
   },
   "devDependencies": {
-    "@types/node": "^13.1.2",
+    "@types/node": "^14.0.6",
     "coc.nvim": "^0.0.77",
     "ts-loader": "^7.0.2",
     "typescript": "^3.5.2"
