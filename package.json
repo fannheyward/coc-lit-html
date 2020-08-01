@@ -75,7 +75,7 @@
   "devDependencies": {
     "@types/node": "^14.0.6",
     "coc.nvim": "^0.0.77",
-    "ts-loader": "^7.0.2",
+    "ts-loader": "^8.0.2",
     "typescript": "^3.5.2"
   }
 }
